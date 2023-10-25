@@ -18,6 +18,7 @@ jobs:
         run: |
           # Add your deployment steps for Job 1 here
           echo "Deploying Job 1"
+          sleep 2m 
 
   deploy_job_2:
     name: Deploy Job 2
@@ -31,6 +32,7 @@ jobs:
         run: |
           # Add your deployment steps for Job 2 here
           echo "Deploying Job 2"
+          sleep 2m 
 
   deploy_job_3:
     name: Deploy Job 3
@@ -44,3 +46,4 @@ jobs:
         run: |
           # Add your deployment steps for Job 3 here
           echo "Deploying Job 3"
+          sleep 2m 
