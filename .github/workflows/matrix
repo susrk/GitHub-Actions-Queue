@@ -1,0 +1,18 @@
+jobs:
+  update-status:
+    runs-on: ubuntu-latest
+    steps:
+      # Steps for updating the status
+
+  parallel-jobs:
+    runs-on: ubuntu-latest
+    needs: update-status
+
+    strategy:
+      matrix:
+        job: [job1, job2]  # Define the parallel jobs here
+
+    steps:
+      name: Run Parallel Job
+      run: |
+        echo "This is a parallel job: ${{ matrix.job }}"
