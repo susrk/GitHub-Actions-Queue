@@ -2,7 +2,7 @@ name: Update Status
 
 on:
   workflow_run:
-    workflows: ["Your Workflow Name"]
+    workflows: ["parallel_job"]
     types:
       - in_progress
 
