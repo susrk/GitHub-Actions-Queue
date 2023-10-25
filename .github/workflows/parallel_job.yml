@@ -1,41 +1,46 @@
-import requests
-import json
+name: Parallel Job Deployment
 
-# Replace with your GitHub Personal Access Token (PAT) and the GraphQL query.
-GITHUB_ACCESS_TOKEN = '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'
-GITHUB_GRAPHQL_QUERY = '''
-{
-  repository(owner: "susrk", name: "GitHub-Actions-Queue") {
-    actions {
-      workflow_runs(first: 100, status: QUEUED) {
-        totalCount
-      }
-    }
-  }
-}
-'''
+on:
+  push:
+    branches:
+      - main
 
-# Define the GraphQL API endpoint.
-GITHUB_API_ENDPOINT = 'https://api.github.com/graphql'
+jobs:
+  deploy_job_1:
+    name: Deploy Job 1
+    runs-on: ubuntu-latest
 
-# Create the headers with the PAT for authentication.
-headers = {
-    'Authorization': f'token {GITHUB_ACCESS_TOKEN}',
-}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-# Create a JSON request payload with the GraphQL query.
-payload = {
-    'query': GITHUB_GRAPHQL_QUERY,
-}
+      - name: Deploy Job 1 Step
+        run: |
+          # Add your deployment steps for Job 1 here
+          echo "Deploying Job 1"
 
-# Make the GraphQL API request.
-response = requests.post(GITHUB_API_ENDPOINT, headers=headers, json=payload)
+  deploy_job_2:
+    name: Deploy Job 2
+    runs-on: ubuntu-latest
 
-# Check the response status code.
-if response.status_code == 200:
-    data = response.json()
-    queue_status = data.get('data', {}).get('repository', {}).get('actions', {}).get('workflow_runs', {}).get('totalCount')
-    print(f'Queue status: {queue_status}')
-else:
-    print(f'Failed to fetch queue status. Status code: {response.status_code}')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
+      - name: Deploy Job 2 Step
+        run: |
+          # Add your deployment steps for Job 2 here
+          echo "Deploying Job 2"
+
+  deploy_job_3:
+    name: Deploy Job 3
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy Job 3 Step
+        run: |
+          # Add your deployment steps for Job 3 here
+          echo "Deploying Job 3"
