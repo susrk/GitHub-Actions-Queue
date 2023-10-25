@@ -1,18 +1,19 @@
-name: Parallel Job Deployment
+name: Update Status
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Your Workflow Name"]
+    types:
+      - in_progress
 
 jobs:
-  deploy_job_1:
-    name: Deploy Job 1
+  update-status:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
+
       - name: Update Status
         run: |
           ACCESS_TOKEN="${{ secrets.ACCESS }}"
@@ -31,36 +32,33 @@ jobs:
               }\"
             }" $GRAPHQL_API_URL
 
+  # Define other parallel jobs here
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
       - name: Deploy Job 1 Step
         run: |
           # Add your deployment steps for Job 1 here
           echo "Deploying Job 1"
-          
 
-  deploy_job_2:
-    name: Deploy Job 2
+  job2:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      
       - name: Deploy Job 2 Step
         run: |
           # Add your deployment steps for Job 2 here
           echo "Deploying Job 2"
-          sleep 2m 
 
-  deploy_job_3:
-    name: Deploy Job 3
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
-      - name: Deploy Job 3 Step
-        run: |
-          # Add your deployment steps for Job 3 here
-          echo "Deploying Job 3"
-          sleep 2m 
+
+
+
+
+
