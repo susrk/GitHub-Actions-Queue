@@ -2,7 +2,7 @@ name: Parallel Jobs with GraphQL
 
 on:
   workflow_run:
-    workflows: ["matrix1"]
+    workflows: ["matrix12"]
     types:
       - in_progress
 
