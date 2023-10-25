@@ -5,7 +5,7 @@ import json
 GITHUB_ACCESS_TOKEN = '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'
 GITHUB_GRAPHQL_QUERY = '''
 {
-  repository(owner: susrk, name: GitHub-Actions-Queue) {
+  repository(owner: "susrk", name: "GitHub-Actions-Queue") {
     actions {
       workflow_runs(first: 100, status: QUEUED) {
         totalCount
